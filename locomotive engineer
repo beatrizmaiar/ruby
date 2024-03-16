@@ -1,0 +1,38 @@
+class LocomotiveEngineer
+  def self.generate_list_of_wagons(*ids)
+    ids
+  end
+
+  def self.fix_list_of_wagons(wagons1, wagons2)
+    locomotive_id = 1
+    first_two_wagons = wagons1.slice!(0, 2)
+    wagons1.push(*first_two_wagons)
+    wagons1.insert(wagons1.index(locomotive_id) + 1, *wagons2)
+    wagons1
+  end
+
+  def self.add_missing_stops(route_hash, *stops)
+    stops_array = stops.map { |stop| stop.is_a?(Hash) ? stop.values : stop }
+    route_hash[:stops] = stops_array.flatten
+    route_hash
+  end
+
+  def self.extend_route_information(route_details, additional_details)
+    route_details.merge(additional_details)
+  end
+end
+
+#Testes
+puts "Ex 1:"
+puts LocomotiveEngineer.generate_list_of_wagons(1, 7, 12, 3, 14, 8, 5)
+
+puts "\nEx 2:"
+puts LocomotiveEngineer.fix_list_of_wagons([2, 5, 1, 7, 4, 12, 6, 3, 13], [3, 17, 6, 15])
+
+puts "\nEx 3:"
+puts LocomotiveEngineer.add_missing_stops({from: "New York", to: "Miami"},
+                    stop_1: "Washington, DC", stop_2: "Charlotte", stop_3: "Atlanta",
+                    stop_4: "Jacksonville", stop_5: "Orlando")
+
+puts "\nEx 4:"
+puts LocomotiveEngineer.extend_route_information({"from" => "Berlin", "to" => "Hamburg"}, {"length" => "100", "speed" => "50"})
