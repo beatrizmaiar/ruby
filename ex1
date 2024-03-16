@@ -1,0 +1,8 @@
+class LocomotiveEngineer
+  def self.generate_list_of_wagons(*ids)
+    ids
+  end
+end
+
+puts LocomotiveEngineer.generate_list_of_wagons(1, 7, 12, 3, 14, 8, 5)
+# => [1, 7, 12, 3, 14, 8, 5]
